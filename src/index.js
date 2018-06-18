@@ -2,24 +2,29 @@ import React from "react";
 import ReactDOM from "react-dom";
 import SearchBar from "./components/SearchBar";
 import Answer from "./components/Answer";
+import _ from 'lodash'
 
 class App extends React.Component {
-    state = {
-        text: "",
-        body: null
+    constructor() {
+      super()
+      this.state = {
+          text: "",
+          body: null
+      }
     }
 
     textChangeEvent = (event) => {
         const value = event.target.value;
         this.setState({
             text: value 
+        }, () => {
+          const {text} = this.state
+          this.getResults(text)
         })
-
-        this.getResults(event)
     }
 
-    getResults = (event) => {
-        fetch(`http://api.duckduckgo.com/?q=${event.target.value}&format=json`, {
+    getResults = _.debounce((searchTerm) => {
+        fetch(`http://api.duckduckgo.com/?q=${searchTerm}&format=json`, {
             mode: "cors"
         })
         .then(data => data.json())
@@ -35,7 +40,7 @@ class App extends React.Component {
                 "body": null
             })
         })
-    }
+    }, 750)
 
     render() {
         return (
