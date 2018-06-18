@@ -40,7 +40,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>Answer machine</h1>
+                <h1 className="title">Answer machine</h1>
                 <SearchBar textChangeEvent={this.textChangeEvent} text={this.state.text}/>
                 {this.state.body !== null && <Answer answer={this.state.body}/>}
             </div>

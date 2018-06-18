@@ -1,3 +1,7 @@
+.title {
+    margin-top: 1em;
+}
+
 input {
     width: 100%;
     padding: 0.7em;
@@ -19,4 +23,12 @@ input {
 
 .answer .big {
     width: 100%;
+}
+
+.answer a {
+    color: #0503bd;
+}
+
+.answer a:hover {
+    text-decoration: none;
 }
