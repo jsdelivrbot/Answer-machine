@@ -13,13 +13,11 @@ class App extends React.Component {
         const value = event.target.value;
         this.setState({
             text: value 
-        })
-
-        this.getResults(event)
+        }, this.getResults)
     }
 
-    getResults = (event) => {
-        fetch(`http://api.duckduckgo.com/?q=${event.target.value}&format=json`, {
+    getResults = () => {
+        fetch(`http://api.duckduckgo.com/?q=${this.state.text}&format=json`, {
             mode: "cors"
         })
         .then(data => data.json())
